@@ -13,15 +13,21 @@ Adapted by Simon Castle from a previous template by Chris Paterson.
     - Run `cargo run 0`
         - This should show some build output (the first time this is run), followed by 
         > Day 0
+        >
         > Part 1: 5971
+        >
         > Part 2: 1155077
+        >
         > 0.024ms (exact time may vary)
         > \----------
     - Run `cargo test 00`
         - This should show some build output (the first time this is run), followed by 
         > running 3 tests
+        >
         > test day00::tests::check_day00_both_case1 ... ok
+        >
         > test day00::tests::check_day00_part1_case1 ... ok
+        >
         > test day00::tests::check_day00_part2_case1 ... ok
         >
         > test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 75 filtered out; finished in 0.00s
