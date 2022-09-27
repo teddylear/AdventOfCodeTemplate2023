@@ -16,7 +16,7 @@ Adapted by Simon Castle from a previous template by Chris Paterson.
         > Part 1: 5971
         > Part 2: 1155077
         > 0.024ms (exact time may vary)
-        > ----------
+        > \----------
     - Run `cargo test 00`
         - This should show some build output (the first time this is run), followed by 
         > running 3 tests
