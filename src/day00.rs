@@ -1,9 +1,15 @@
 // Example simple puzzle to test you've installed correctly.
 // This will only be run if you specify to run day 0 specifically.  Running all days will skip this script.
 
-// This puzzle input consists of lines containing 2 numbers each.
+// This (fictional) puzzle input consists of lines containing 2 numbers each.
 // For Part 1, we're asked to find the sum of all the numbers in the list.
-// For Part 2, we're asked to find the square of the difference between the two numbers in each line, then return the sum of those.
+// For Part 2, we're asked to find the square of the difference between the two numbers in each line,
+// then return the sum of those.
+
+// When run with `cargo run 0`, the calling code in main.rs will load the input in the file inputs/0
+// and pass that through as the input to the day00() function here as a single &str.
+// This function (as with all dayXX templates in this repo) returns two Strings, which will be printed
+// out to terminal following the labels "Part 1:" and "Part 2: respectively".
 
 pub fn day00(input_lines: &str) -> (String, String) {
     let answer1 = input_lines.lines().map(sum_numbers_in_line).sum::<i32>();
@@ -28,6 +34,13 @@ fn square_difference_in_line(line: &str) -> i32 {
     assert_eq!(numbers.len(), 2);
     (numbers.get(0).unwrap() - numbers.get(1).unwrap()).pow(2)
 }
+
+// The template per-day files also come with template UTs.  Most Advent of Code puzzles
+// have one or more examples during the puzzle page which can be useful to run your code
+// against.
+
+// There are examples here to test just the output for the first or second part of the
+// the puzzle, or both together.
 
 #[cfg(test)]
 mod tests {

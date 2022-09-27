@@ -7,7 +7,7 @@ pub fn day15(input_lines: &str) -> (String, String) {
 
 #[cfg(test)]
 mod tests {
-    use super::day15;
+    use super::*;
 
     #[test]
     fn check_day15_part1_case1() {
