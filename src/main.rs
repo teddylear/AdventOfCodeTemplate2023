@@ -28,7 +28,7 @@ mod day25;
 use std::env;
 
 type DayFunction = fn(&str) -> (String, String);
-static DAY_FUNCTIONS: [DayFunction; 26] = [
+const DAY_FUNCTIONS: [DayFunction; 26] = [
     day00::day00,
     day01::day01,
     day02::day02,
