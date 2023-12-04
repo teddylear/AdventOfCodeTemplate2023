@@ -2,7 +2,7 @@
 
 A sample template for Rust solutions to any one year of [Advent of Code](https://adventofcode.com/).
 
-Adapted by Simon Castle from a previous template by Chris Paterson.
+Fork of Simon Castle's template from a previous template by Chris Paterson.
 
 ## How to Use
 
@@ -11,7 +11,7 @@ Adapted by Simon Castle from a previous template by Chris Paterson.
 3. Test you can run the code, using the Day 00 example.
     - In the terminal, go to the directory you've cloned the repo into (the directory containing this README.md file)
     - Run `cargo run 0`
-        - This should show some build output (the first time this is run), followed by 
+        - This should show some build output (the first time this is run), followed by
         > Day 0
         >
         > Part 1: 5971
@@ -21,7 +21,7 @@ Adapted by Simon Castle from a previous template by Chris Paterson.
         > 0.024ms (exact time may vary)
         > \----------
     - Run `cargo test 00`
-        - This should show some build output (the first time this is run), followed by 
+        - This should show some build output (the first time this is run), followed by
         > running 3 tests
         >
         > test day00::tests::check_day00_both_case1 ... ok
