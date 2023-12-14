@@ -3,7 +3,6 @@ pub fn day01(input_lines: &str) -> (String, String) {
     for line in input_lines.split("\n") {
         answer1 = answer1 + calc_line_amount(line)
     }
-    let _ = input_lines;
     let answer2 = 0;
     (format!("{}", answer1), format!("{}", answer2))
 }
@@ -29,22 +28,22 @@ fn calc_line_amount(line: &str) -> u32 {
     return result_string.parse::<u32>().unwrap();
 }
 
-// #[cfg(test)]
-// mod tests {
-    // use super::*;
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-    // #[test]
-    // fn check_day01_part1_case1() {
-        // assert_eq!(day01("").0, "0".to_string())
-    // }
+    #[test]
+    fn check_day01_part1_case1() {
+        assert_eq!(day01("").0, "0".to_string())
+    }
 
-    // #[test]
-    // fn check_day01_part2_case1() {
-        // assert_eq!(day01("").1, "0".to_string())
-    // }
+    #[test]
+    fn check_day01_part2_case1() {
+        assert_eq!(day01("").1, "0".to_string())
+    }
 
-    // #[test]
-    // fn check_day01_both_case1() {
-        // assert_eq!(day01(""), ("0".to_string(), "0".to_string()))
-    // }
-// }
+    #[test]
+    fn check_day01_both_case1() {
+        assert_eq!(day01(""), ("0".to_string(), "0".to_string()))
+    }
+}
