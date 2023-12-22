@@ -14,6 +14,10 @@ pub fn day02(input_lines: &str) -> (String, String) {
 fn day02_part1(input_lines: &str, cubes: HashMap<String, usize>) -> usize {
     let mut result = 0;
     for line in input_lines.split("\n") {
+        println!("Line {}", line);
+        if line == "" {
+            continue;
+        }
         result = result + value_per_game(line, cubes.clone())
     }
     return result;
@@ -69,13 +73,13 @@ fn set_str_to_map(set_str: &str) -> HashMap<String, usize> {
     let mut color: String;
 
     for num_color_combo in set_str.split(",") {
-        println!("{}", num_color_combo);
+        // println!("{}", num_color_combo);
         index = 0;
         num = 0;
         color = "".to_string();
         let text = num_color_combo.strip_prefix(" ").unwrap();
         for piece in text.split(" ") {
-            println!("{}", piece);
+            // println!("{}", piece);
             if index == 0 {
                 num = piece.parse::<usize>().unwrap();
             } else {
