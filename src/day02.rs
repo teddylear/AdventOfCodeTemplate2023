@@ -83,20 +83,4 @@ mod tests {
     fn check_day01_is_valid_set_4() {
         assert!(!is_valid_set(set_str_to_map("3 blue, 4 red, 7 green"), set_str_to_map("4 blue, 3 red")))
     }
-
-    // #[test]
-    // fn check_day02_part1_case1() {
-        // assert_eq!(day02("").0, "0".to_string())
-    // }
-    //
-
-    // #[test]
-    // fn check_day02_part2_case1() {
-        // assert_eq!(day02("").1, "0".to_string())
-    // }
-
-    // #[test]
-    // fn check_day02_both_case1() {
-        // assert_eq!(day02(""), ("0".to_string(), "0".to_string()))
-    // }
 }
