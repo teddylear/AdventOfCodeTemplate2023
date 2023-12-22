@@ -14,7 +14,6 @@ pub fn day02(input_lines: &str) -> (String, String) {
 fn day02_part1(input_lines: &str, cubes: HashMap<String, usize>) -> usize {
     let mut result = 0;
     for line in input_lines.split("\n") {
-        println!("Line {}", line);
         if line == "" {
             continue;
         }
