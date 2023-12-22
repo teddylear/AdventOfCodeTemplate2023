@@ -7,6 +7,19 @@ pub fn day02(input_lines: &str) -> (String, String) {
     (format!("{}", answer1), format!("{}", answer2))
 }
 
+fn is_valid_set(set: HashMap<String, usize>, cubes: HashMap<String, usize>) -> bool {
+    for (set_key, set_value) in set.iter(){
+        if !cubes.contains_key(set_key) {
+            return false;
+        }
+
+        if set_value > cubes.get(set_key).unwrap() {
+            return false;
+        }
+    }
+    return true;
+}
+
 fn set_str_to_map(set_str: &str) -> HashMap<String, usize> {
     let mut game_set = HashMap::new();
     let mut index: usize;
@@ -14,7 +27,6 @@ fn set_str_to_map(set_str: &str) -> HashMap<String, usize> {
     let mut color: String;
 
     for num_color_combo in set_str.split(", ") {
-        // println!("{}\n", num_color_combo);
         index = 0;
         num = 0;
         color = "".to_string();
@@ -50,6 +62,26 @@ mod tests {
             ("red".to_string(), 4),
             ("blue".to_string(), 3),
         ]))
+    }
+
+    #[test]
+    fn check_day01_is_valid_set_1() {
+        assert!(is_valid_set(set_str_to_map("3 blue, 4 red"), set_str_to_map("4 blue, 5 red")))
+    }
+
+    #[test]
+    fn check_day01_is_valid_set_2() {
+        assert!(is_valid_set(set_str_to_map("3 blue, 4 red"), set_str_to_map("3 blue, 4 red")))
+    }
+
+    #[test]
+    fn check_day01_is_valid_set_3() {
+        assert!(!is_valid_set(set_str_to_map("3 blue, 4 red"), set_str_to_map("4 blue, 3 red")))
+    }
+
+    #[test]
+    fn check_day01_is_valid_set_4() {
+        assert!(!is_valid_set(set_str_to_map("3 blue, 4 red, 7 green"), set_str_to_map("4 blue, 3 red")))
     }
 
     // #[test]
