@@ -3,8 +3,26 @@ use std::collections::HashMap;
 pub fn day02(input_lines: &str) -> (String, String) {
     let _ = input_lines;
     let answer1 = 0;
+    // let answer1 = day02_part1(input_lines);
     let answer2 = 0;
     (format!("{}", answer1), format!("{}", answer2))
+}
+
+// fn day02_part1(input_lines: &str) -> (usize) {
+    // let mut result = 0;
+    // for line in input_lines.split("\n") {
+        // result = result + value_per_game(line)
+    // }
+    // return result;
+// }
+
+// fn value_per_game(input_lines: &str) -> (usize) {
+
+// }
+
+fn game_value_in_line(game_text: &str) -> usize {
+    let game_num_str = game_text.strip_prefix("Game ").unwrap();
+    return game_num_str.parse::<usize>().unwrap();
 }
 
 fn is_valid_set(set: HashMap<String, usize>, cubes: HashMap<String, usize>) -> bool {
@@ -82,5 +100,10 @@ mod tests {
     #[test]
     fn check_day01_is_valid_set_4() {
         assert!(!is_valid_set(set_str_to_map("3 blue, 4 red, 7 green"), set_str_to_map("4 blue, 3 red")))
+    }
+
+    #[test]
+    fn check_day01_get_game_number() {
+        assert_eq!(game_value_in_line("Game 11"), 11)
     }
 }
