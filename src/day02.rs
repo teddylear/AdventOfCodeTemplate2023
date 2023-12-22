@@ -7,7 +7,7 @@ pub fn day02(input_lines: &str) -> (String, String) {
         ("blue".to_string(), 14),
         ("green".to_string(), 13),
     ]));
-    let answer2 = 0;
+    let answer2 = day02_part2(input_lines);
     (format!("{}", answer1), format!("{}", answer2))
 }
 
@@ -17,12 +17,60 @@ fn day02_part1(input_lines: &str, cubes: HashMap<String, usize>) -> usize {
         if line == "" {
             continue;
         }
-        result = result + value_per_game(line, cubes.clone())
+        result = result + value_per_game_part_01(line, cubes.clone())
     }
     return result;
 }
 
-fn value_per_game(line: &str, cubes: HashMap<String, usize>) -> usize {
+fn day02_part2(input_lines: &str) -> usize {
+    let mut result = 0;
+    for line in input_lines.split("\n") {
+        if line == "" {
+            continue;
+        }
+
+        let mut index = 0;
+        for line_piece in line.split(":") {
+            if index == 0 {
+                index = index + 1;
+                continue;
+            }
+            result = result + value_per_game_part_02(line_piece);
+
+        }
+    }
+    return result;
+}
+
+fn value_per_game_part_02(line: &str) -> usize {
+    let mut result_map = HashMap::from([
+        ("blue".to_string(), 0),
+        ("green".to_string(), 0),
+        ("red".to_string(), 0),
+    ]);
+    for set in line.split(";") {
+        let set_map = set_str_to_map(set);
+        for (key, val) in set_map.iter() {
+            if val > result_map.get(key).unwrap() {
+                result_map.insert(key.to_string(), *val);
+            }
+        }
+    }
+
+    let mut result: usize = 0;
+    for val in result_map.values() {
+        if result == 0 {
+            result = *val;
+        } else {
+            result = result * val;
+        }
+    }
+
+    return result;
+}
+
+
+fn value_per_game_part_01(line: &str, cubes: HashMap<String, usize>) -> usize {
     let mut game_num = 0;
     let mut index = 0;
     for piece in line.split(":") {
@@ -97,7 +145,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn check_day01_set_from_string_1() {
+    fn check_day02_set_from_string_1() {
         assert_eq!(set_str_to_map(" 3 blue, 4 red"), HashMap::from([
             ("blue".to_string(), 3),
             ("red".to_string(), 4),
@@ -105,7 +153,7 @@ mod tests {
     }
 
     #[test]
-    fn check_day01_set_from_string_2() {
+    fn check_day02_set_from_string_2() {
         assert_eq!(set_str_to_map(" 3 blue, 4 red"), HashMap::from([
             ("red".to_string(), 4),
             ("blue".to_string(), 3),
@@ -113,27 +161,37 @@ mod tests {
     }
 
     #[test]
-    fn check_day01_is_valid_set_1() {
+    fn check_day02_is_valid_set_1() {
         assert!(is_valid_set(set_str_to_map(" 3 blue, 4 red"), set_str_to_map(" 4 blue, 5 red")))
     }
 
     #[test]
-    fn check_day01_is_valid_set_2() {
+    fn check_day02_is_valid_set_2() {
         assert!(is_valid_set(set_str_to_map(" 3 blue, 4 red"), set_str_to_map(" 3 blue, 4 red")))
     }
 
     #[test]
-    fn check_day01_is_valid_set_3() {
+    fn check_day02_is_valid_set_3() {
         assert!(!is_valid_set(set_str_to_map(" 3 blue, 4 red"), set_str_to_map(" 4 blue, 3 red")))
     }
 
     #[test]
-    fn check_day01_is_valid_set_4() {
+    fn check_day02_is_valid_set_4() {
         assert!(!is_valid_set(set_str_to_map(" 3 blue, 4 red, 7 green"), set_str_to_map(" 4 blue, 3 red")))
     }
 
     #[test]
-    fn check_day01_get_game_number() {
+    fn check_day02_get_game_number() {
         assert_eq!(game_value_in_line("Game 11"), 11)
     }
+
+    #[test]
+    fn check_day02_value_per_game_part_02() {
+        assert_eq!(value_per_game_part_02(" 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"), 48);
+        assert_eq!(value_per_game_part_02(" 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue"), 12);
+        assert_eq!(value_per_game_part_02(" 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red"), 1560);
+        assert_eq!(value_per_game_part_02(" 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red"), 630);
+        assert_eq!(value_per_game_part_02(" 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"), 36);
+    }
+
 }
