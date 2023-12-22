@@ -68,12 +68,13 @@ fn set_str_to_map(set_str: &str) -> HashMap<String, usize> {
     let mut num: usize;
     let mut color: String;
 
-    for num_color_combo in set_str.split(", ") {
+    for num_color_combo in set_str.split(",") {
         println!("{}", num_color_combo);
         index = 0;
         num = 0;
         color = "".to_string();
-        for piece in num_color_combo.split(" ") {
+        let text = num_color_combo.strip_prefix(" ").unwrap();
+        for piece in text.split(" ") {
             println!("{}", piece);
             if index == 0 {
                 num = piece.parse::<usize>().unwrap();
@@ -94,7 +95,7 @@ mod tests {
 
     #[test]
     fn check_day01_set_from_string_1() {
-        assert_eq!(set_str_to_map("3 blue, 4 red"), HashMap::from([
+        assert_eq!(set_str_to_map(" 3 blue, 4 red"), HashMap::from([
             ("blue".to_string(), 3),
             ("red".to_string(), 4),
         ]))
@@ -102,7 +103,7 @@ mod tests {
 
     #[test]
     fn check_day01_set_from_string_2() {
-        assert_eq!(set_str_to_map("3 blue, 4 red"), HashMap::from([
+        assert_eq!(set_str_to_map(" 3 blue, 4 red"), HashMap::from([
             ("red".to_string(), 4),
             ("blue".to_string(), 3),
         ]))
@@ -110,22 +111,22 @@ mod tests {
 
     #[test]
     fn check_day01_is_valid_set_1() {
-        assert!(is_valid_set(set_str_to_map("3 blue, 4 red"), set_str_to_map("4 blue, 5 red")))
+        assert!(is_valid_set(set_str_to_map(" 3 blue, 4 red"), set_str_to_map(" 4 blue, 5 red")))
     }
 
     #[test]
     fn check_day01_is_valid_set_2() {
-        assert!(is_valid_set(set_str_to_map("3 blue, 4 red"), set_str_to_map("3 blue, 4 red")))
+        assert!(is_valid_set(set_str_to_map(" 3 blue, 4 red"), set_str_to_map(" 3 blue, 4 red")))
     }
 
     #[test]
     fn check_day01_is_valid_set_3() {
-        assert!(!is_valid_set(set_str_to_map("3 blue, 4 red"), set_str_to_map("4 blue, 3 red")))
+        assert!(!is_valid_set(set_str_to_map(" 3 blue, 4 red"), set_str_to_map(" 4 blue, 3 red")))
     }
 
     #[test]
     fn check_day01_is_valid_set_4() {
-        assert!(!is_valid_set(set_str_to_map("3 blue, 4 red, 7 green"), set_str_to_map("4 blue, 3 red")))
+        assert!(!is_valid_set(set_str_to_map(" 3 blue, 4 red, 7 green"), set_str_to_map(" 4 blue, 3 red")))
     }
 
     #[test]
